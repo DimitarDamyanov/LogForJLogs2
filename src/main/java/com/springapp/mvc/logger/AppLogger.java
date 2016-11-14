@@ -1,34 +1,44 @@
 package com.springapp.mvc.logger;
 
+import com.springapp.mvc.logger.error.ErrorLog;
+import com.springapp.mvc.logger.error.ErrorLogConfig;
+import com.springapp.mvc.logger.info.InfoLog;
+import com.springapp.mvc.logger.info.InfoLogConfig;
+import com.springapp.mvc.logger.throwable.ExceptionLogConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 /**
- * Created by D on 24.12.2015 ã..
+ * Created by D on 24.12.2015 ï¿½..
  */
-public class AppLogger {
+@Service
+public class AppLogger implements IAppLogger {
 
-    private static InfoLog infoLog = null;
-    private static ErrorLog errorLog = null;
-    private static ExceptionLog exceptionLog = null;
+    @Autowired
+    @Qualifier(ErrorLogConfig.NAME)
+    private Logger errLog;
 
-    public static void info(Object message){
-        if(infoLog == null){
-            infoLog = new InfoLog();
-        }
-        infoLog.printLog(message);
+    @Autowired
+    @Qualifier(InfoLogConfig.NAME)
+    private Logger infoLog;
+
+    @Autowired
+    @Qualifier(ExceptionLogConfig.NAME)
+    private Logger exLog;
+
+    @Override
+    public void info(String msg) {
+        this.infoLog.printLog(msg);
     }
 
-    public static void error(Object message){
-        if(errorLog == null){
-            errorLog = new ErrorLog();
-        }
-        errorLog.printLog(message);
+    @Override
+    public void error(String msg) {
+        this.errLog.printLog(msg);
     }
 
-    public static void exception(Object message){
-        if(exceptionLog == null){
-            exceptionLog = new ExceptionLog();
-        }
-        exceptionLog.printLog(message);
+    @Override
+    public void exception(Throwable throwable) {
+        this.exLog.printLog(throwable);
     }
-
-
 }

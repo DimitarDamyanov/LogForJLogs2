@@ -15,11 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 
-public class HelloController {
+public class ViewController {
 	@RequestMapping(method = RequestMethod.GET, value = "/")
-	public String printWelcome(ModelMap model) {
-		return "hello";
+	public String indexPage(ModelMap model) {
+		return "index";
 	}
-
 }
 

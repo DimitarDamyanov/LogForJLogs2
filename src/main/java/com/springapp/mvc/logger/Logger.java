@@ -4,15 +4,15 @@ import org.apache.logging.log4j.LogManager;
 import sun.rmi.runtime.Log;
 
 /**
- * Created by D on 24.12.2015 ã..
+ * Created by D on 24.12.2015 ï¿½..
  */
-public abstract class Logger {
+public abstract class Logger<T> {
 
     protected org.apache.logging.log4j.Logger logger;
 
-    Logger(Class<?> src){
+    public Logger(Class<?> src){
         this.logger = LogManager.getLogger(src);
     }
 
-    public abstract void printLog(Object message);
+    public abstract void printLog(T message);
 }

@@ -1,51 +1,61 @@
 package com.springapp.mvc.logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Created by D on 24.12.2015 ã..
+ * Created by D on 24.12.2015 ï¿½..
  */
+@Component
 public class ThrowRandomException {
 
-    ArrayList<Throwable> listOfExceptions = new ArrayList<Throwable>();
+    @Autowired
+    private AppLogger logger;
 
-    public ThrowRandomException(){
+    private ArrayList<Throwable> listOfExceptions = new ArrayList<Throwable>();
+
+    private Random randomGenerator = new Random();
+
+    public ThrowRandomException() {
         initBuiltInExceptionsList();
     }
 
-    private void initBuiltInExceptionsList(){
-        listOfExceptions.add(new ArithmeticException());
-        listOfExceptions.add(new ArrayIndexOutOfBoundsException());
-        listOfExceptions.add(new ArrayStoreException());
-        listOfExceptions.add(new ClassCastException());
-        listOfExceptions.add(new IllegalArgumentException());
-        listOfExceptions.add(new IllegalMonitorStateException());
-        listOfExceptions.add(new IllegalStateException());
-        listOfExceptions.add(new IllegalThreadStateException());
-        listOfExceptions.add(new IndexOutOfBoundsException());
-        listOfExceptions.add(new NegativeArraySizeException());
-        listOfExceptions.add(new NullPointerException());
-        listOfExceptions.add(new NumberFormatException());
-        listOfExceptions.add(new SecurityException());
-        listOfExceptions.add(new UnsupportedOperationException());
+    private void initBuiltInExceptionsList() {
+        Throwable[] predefinedList = new Throwable[]{
+                new ArithmeticException(),
+                new ArrayIndexOutOfBoundsException(),
+                new ArrayStoreException(),
+                new ClassCastException(),
+                new IllegalArgumentException(),
+                new IllegalMonitorStateException(),
+                new IllegalStateException(),
+                new IllegalThreadStateException(),
+                new IndexOutOfBoundsException(),
+                new NegativeArraySizeException(),
+                new NullPointerException(),
+                new NumberFormatException(),
+                new SecurityException(),
+                new UnsupportedOperationException()
+        };
 
+        listOfExceptions.addAll(Arrays.asList(predefinedList));
     }
 
-    public void addAdditionalException(Throwable e){
+    public void addAdditionalException(Throwable e) {
         this.listOfExceptions.add(e);
     }
 
-    public void throwException(){
+    public void throwException() {
         //generate random number from 0 to Exception list size
-        int number = 0;
-        Random random = new Random();
-        number = random.nextInt(listOfExceptions.size());
+        int number = randomGenerator.nextInt(listOfExceptions.size());
         try {
             throw this.listOfExceptions.get(number);
         } catch (Throwable throwable) {
-           AppLogger.exception(throwable);
+            logger.exception(throwable);
         }
-
     }
 }

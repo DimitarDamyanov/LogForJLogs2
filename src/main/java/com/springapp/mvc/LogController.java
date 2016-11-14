@@ -2,6 +2,7 @@ package com.springapp.mvc;
 
 import com.springapp.mvc.logger.AppLogger;
 import com.springapp.mvc.logger.ThrowRandomException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,35 +10,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by D on 25.12.2015 ã..
+ * Created by D on 25.12.2015 ï¿½..
  */
 
 @Controller
 public class LogController {
 
+    @Autowired
+    private AppLogger logger;
+
+    @Autowired
+    private ThrowRandomException tre;
+
     @RequestMapping(method = RequestMethod.POST, value = "/log/information")
     public String logInformation(HttpServletRequest request){
-        System.out.println(request.getParameter("information"));
-        AppLogger.info(request.getParameter("information"));
-        return "hello";
+       logger.info(request.getParameter("information"));
+       return "index";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/log/error")
     public String logError(HttpServletRequest request){
-        System.out.println(request.getParameter("error"));
-        AppLogger.info(request.getParameter("error"));
-        return "hello";
+        logger.error(request.getParameter("error"));
+        return "index";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/log/exception")
     public String logException(HttpServletRequest request){
-        ThrowRandomException throwRandomException = new ThrowRandomException();
         try{
-            throwRandomException.throwException();
+            tre.throwException();
         } catch (Exception e){
-            AppLogger.exception(e);
+            logger.exception(e);
         }
-
-        return "hello";
+        return "index";
     }
 }
