@@ -13,19 +13,18 @@ import org.springframework.context.annotation.Configuration;
 public class LoggerConfig {
 
     @Bean(name = ErrorLogConfig.NAME)
-    public ErrorLogConfig defaultErrorLogConfiguration(){
+    public ErrorLogConfig defaultErrorLogConfiguration() {
         return new ErrorLogConfig();
     }
 
     @Bean(name = InfoLogConfig.NAME)
-    public InfoLogConfig defaultInfoLogConfiguration(){
-        return  new InfoLogConfig();
+    public InfoLogConfig defaultInfoLogConfiguration() {
+        return new InfoLogConfig();
     }
 
     @Bean(name = ExceptionLogConfig.NAME)
-    public ExceptionLogConfig defaultExceptionLogConfiguration(){
+    public ExceptionLogConfig defaultExceptionLogConfiguration() {
         return new ExceptionLogConfig();
     }
-
 
 }

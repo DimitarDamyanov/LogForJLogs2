@@ -5,6 +5,8 @@ package com.springapp.mvc.logger;
  */
 public interface IAppLogger {
     void info(String msg);
+
     void error(String msg);
+
     void exception(Throwable throwable);
 }

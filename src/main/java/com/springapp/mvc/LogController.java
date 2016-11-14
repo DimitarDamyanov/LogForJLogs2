@@ -23,22 +23,22 @@ public class LogController {
     private ThrowRandomException tre;
 
     @RequestMapping(method = RequestMethod.POST, value = "/log/information")
-    public String logInformation(HttpServletRequest request){
-       logger.info(request.getParameter("information"));
-       return "index";
+    public String logInformation(HttpServletRequest request) {
+        logger.info(request.getParameter("information"));
+        return "index";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/log/error")
-    public String logError(HttpServletRequest request){
+    public String logError(HttpServletRequest request) {
         logger.error(request.getParameter("error"));
         return "index";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/log/exception")
-    public String logException(HttpServletRequest request){
-        try{
+    public String logException(HttpServletRequest request) {
+        try {
             tre.throwException();
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.exception(e);
         }
         return "index";

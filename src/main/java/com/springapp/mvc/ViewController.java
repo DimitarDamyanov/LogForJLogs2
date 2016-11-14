@@ -14,11 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
-
 public class ViewController {
-	@RequestMapping(method = RequestMethod.GET, value = "/")
-	public String indexPage(ModelMap model) {
-		return "index";
-	}
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    public String indexPage(ModelMap model) {
+        return "index";
+    }
 }
 

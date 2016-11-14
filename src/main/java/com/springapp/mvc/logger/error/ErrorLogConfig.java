@@ -5,7 +5,7 @@ package com.springapp.mvc.logger.error;
  */
 public class ErrorLogConfig extends ErrorLog {
 
-    public static final String NAME= "defaultErrorLogConfig";
+    public static final String NAME = "defaultErrorLogConfig";
 
     public ErrorLogConfig() {
         super(ErrorLogConfig.class);

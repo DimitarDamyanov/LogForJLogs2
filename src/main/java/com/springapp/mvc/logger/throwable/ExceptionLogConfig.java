@@ -5,7 +5,7 @@ package com.springapp.mvc.logger.throwable;
  */
 public class ExceptionLogConfig extends ExceptionLog {
 
-    public static final String NAME= "defaultExceptionLogConfig";
+    public static final String NAME = "defaultExceptionLogConfig";
 
     public ExceptionLogConfig() {
         super(ExceptionLogConfig.class);

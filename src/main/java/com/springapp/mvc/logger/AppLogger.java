@@ -1,8 +1,6 @@
 package com.springapp.mvc.logger;
 
-import com.springapp.mvc.logger.error.ErrorLog;
 import com.springapp.mvc.logger.error.ErrorLogConfig;
-import com.springapp.mvc.logger.info.InfoLog;
 import com.springapp.mvc.logger.info.InfoLogConfig;
 import com.springapp.mvc.logger.throwable.ExceptionLogConfig;
 import org.springframework.beans.factory.annotation.Autowired;

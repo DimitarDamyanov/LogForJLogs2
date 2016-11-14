@@ -8,7 +8,7 @@ import com.springapp.mvc.logger.error.ErrorLog;
  */
 public class InfoLogConfig extends InfoLog {
 
-    public static final String NAME= "defaultInfoLogConfig";
+    public static final String NAME = "defaultInfoLogConfig";
 
     public InfoLogConfig() {
         super(InfoLogConfig.class);
